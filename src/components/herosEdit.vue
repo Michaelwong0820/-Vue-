@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   data: function() {
     return {
-      url: "http://localhost:3002/heros",
+      url: "/heros",
       obj: {},
       id: ""
     };
@@ -30,12 +30,12 @@ export default {
   methods: {
     getListById: function() {
       //根据id提取数据
-      axios.get(`${this.url}/${this.id}`).then(res => {
+      this.$http.get(`${this.url}/${this.id}`).then(res => {
           this.obj = res.data
       });
     },
     edit:function(id){
-        axios.put(`${this.url}/${id}`,{name:this.obj.name,gender:this.obj.gender})
+        this.$http.put(`${this.url}/${id}`,{name:this.obj.name,gender:this.obj.gender})
             .then(res=>{
                 //跳转到/herolist
                 this.$router.push('/heroslist')

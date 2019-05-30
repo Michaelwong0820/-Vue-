@@ -30,24 +30,24 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 export default {
     data:function(){
         return {
-            url:'http://localhost:3002/heros',
+            url:'/heros',
             list:[]
         }
     },
     methods: {
       getList(){
-        axios.get(this.url)
+        this.$http.get(this.url)
           .then(res=>{
             this.list = res.data
             
           })
       },
       del(id){
-        axios.delete(`${this.url}/${id}`)
+        this.$http.delete(`${this.url}/${id}`)
           .then(res=>{
             //重新渲染
             this.getList()
@@ -56,6 +56,7 @@ export default {
       }
     },
     mounted:function(){
+      // 页面加载时渲染数据
       this.getList()
     }
     

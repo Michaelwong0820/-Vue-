@@ -23,18 +23,18 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   data: function() {
     return {
-      url: "http://localhost:3002/heros",
+      url: "/heros",
       name: "",
       gender: ""
     };
   },
   methods: {
     add: function() {
-      axios.post(this.url,{name:this.name,gender:this.gender})
+      this.$http.post(this.url,{name:this.name,gender:this.gender})
         .then(res=>{
             if(res.status == 201) {
                 alert('新增成功')
